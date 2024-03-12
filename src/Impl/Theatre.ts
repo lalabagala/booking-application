@@ -15,4 +15,9 @@ export class TheatreService implements ITheatre {
     addTheatre(theatreEntity: TheatreEntity): IEntity {
        return this.theatreRepo.create(theatreEntity)
     }
+
+    getTheatreById(theatre_id: number): TheatreEntity {
+        let theatre = this.theatreRepo.findOne(theatre_id) as TheatreEntity;
+        return theatre
+    }
 }

@@ -5,4 +5,5 @@ import { TheatreEntity } from "../repository/TheatreRepository";
 export interface ITheatre {
     addTheatre(theatreEntity: TheatreEntity): IEntity
     getTheatresForLocation(location: LocationEntity):TheatreEntity[];
+    getTheatreById(theatre_id: number): TheatreEntity
 }

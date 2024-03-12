@@ -1,4 +1,5 @@
 import { AudiEntity } from "./Audi";
+import { BaseRepository } from "./BaseRepository";
 import { IEntity } from "./Interfaces/IEntity";
 
 export class AudiRowEntity implements IEntity{
@@ -20,4 +21,25 @@ export class AudiRowEntity implements IEntity{
         }
     }
 
+}
+
+export class AudiRowRepository extends BaseRepository<AudiRowEntity> {
+    private static repoObj: AudiRowRepository;
+    protected entity: AudiRowEntity[]
+    constructor() {
+        super()
+        this.entity = []
+    }
+
+    public getRepositoryInstance(): AudiRowRepository {
+        if(AudiRowRepository.repoObj) {
+            return AudiRowRepository.repoObj
+        } else {
+            AudiRowRepository.repoObj = new AudiRowRepository()
+            return AudiRowRepository.repoObj
+        }
+    }
+    public getRowsForAudi(audi_id: number): AudiRowEntity[] {
+        return this.entity.filter(el=>{ el.audi.id == audi_id});
+    }
 }

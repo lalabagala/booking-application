@@ -21,8 +21,11 @@ export class LocationEntity implements IEntity {
 // singleton pattern for repositories
 export class ServiceLocationRepository extends BaseRepository<LocationEntity> {
     private static repoObj: ServiceLocationRepository;
+    protected entity: LocationEntity[];
     constructor() {
-        super()
+        super();
+        this.entity = []
+        super.entity = this.entity
     }
 
     public getRepositoryInstance(): ServiceLocationRepository {
@@ -32,5 +35,9 @@ export class ServiceLocationRepository extends BaseRepository<LocationEntity> {
             ServiceLocationRepository.repoObj = new ServiceLocationRepository()
             return ServiceLocationRepository.repoObj
         }
+    }
+
+    public getLocationForId(location_id: number): LocationEntity {
+        return this.entity.filter(el=> el.id==location_id)[0]
     }
 }
